@@ -20,13 +20,17 @@ function App() {
   vt.unshift([0, vt[0][1]]);
   let md = 0;
   let mid = Infinity;
-  vt.map((v) => {
+  const fo = vt.map((v) => {
     if (v[1] > md) {
       md = v[1];
     }
     if (v[1] < mid) {
       mid = v[1];
     }
+    return [
+      ...v,
+      "point { size: 4; shape-type: square; fill-color: #ffff00; }",
+    ];
   });
 
   const gGraphOptions = {
@@ -42,12 +46,16 @@ function App() {
       },
     },
     series: {
-      0: { color: "#ff0000" },
+      0: {
+        color: "#ff0000",
+      },
     },
     legend: "none",
     tooltip: {
       isHtml: false,
     },
+    pointSize: 8,
+    pointColor: "#ffff00",
   };
   console.log(vt);
   function updateRangeData(
@@ -152,15 +160,11 @@ function App() {
         })}
       </div>
       <div className="flex flex-col gap-5">
-        <div>
-          <p className="text-2x">Torso Stats</p>
-          <br />
-          <p>min Hit to kill:</p>
-        </div>
+        <div></div>
       </div>
       <Chart
         chartType="LineChart"
-        data={[["range", "damage"], ...rtcpy]}
+        data={[["range", "damage", { type: "string", role: "style" }], ...fo]}
         options={gGraphOptions}
       />
     </main>
