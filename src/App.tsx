@@ -38,8 +38,20 @@ function App() {
     hAxis: {
       title: "Range (studs)",
       viewWindow: { min: 0, max: vt[vt.length - 1][0] },
+      gridlines: {
+        color: "#373738",
+      },
     },
-    vAxis: { title: "Damage", viewWindow: { min: mid - 5, max: md + 5 } },
+    vAxis: {
+      title: "Damage",
+      viewWindow: { min: mid - 5, max: md + 5 },
+      gridlines: {
+        color: "#104C77",
+      },
+      minorGridlines: {
+        transparency: 100,
+      },
+    },
     chartArea: {
       backgroundColor: {
         fill: "#000000",
